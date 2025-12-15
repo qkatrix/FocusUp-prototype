@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusUp - Produktivitātes rīks</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigācija -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo-link">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>FocusUp</span>
+                </div>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Sākums</a></li>
+                <li><a href="tasks.html"><i class="fas fa-tasks"></i> Uzdevumi</a></li>
+                <li><a href="statistics.html"><i class="fas fa-chart-bar"></i> Statistika</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profils</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Iestatījumi</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-btn" title="Pārslēgt tēmu">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Hero sekcija -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Paaugstini savu produktivitāti</h1>
+                <p class="hero-description">FocusUp ir vienkāršs un efektīvs rīks uzdevumu pārvaldībai un progresam sekot.</p>
+                <div class="hero-buttons">
+                    <a href="tasks.html" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Sākt darbu
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        <i class="fas fa-info-circle"></i> Uzzināt vairāk
+                    </a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <i class="fas fa-check-circle stat-icon"></i>
+                    <div class="stat-content">
+                        <h3 id="completed-tasks-count">0</h3>
+                        <p>Pabeigtie uzdevumi</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-fire stat-icon"></i>
+                    <div class="stat-content">
+                        <h3 id="current-streak">0</h3>
+                        <p>Dienu sērija</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ātrās darbības -->
+        <section class="quick-actions">
+            <h2>Ātrās darbības</h2>
+            <div class="action-grid">
+                <div class="action-card" onclick="window.location.href='tasks.html'">
+                    <i class="fas fa-plus-circle action-icon"></i>
+                    <h3>Pievienot uzdevumu</h3>
+                    <p>Izveido jaunu uzdevumu</p>
+                </div>
+                <div class="action-card" onclick="window.location.href='tasks.html'">
+                    <i class="fas fa-list-check action-icon"></i>
+                    <h3>Apskatīt uzdevumus</h3>
+                    <p>Skatīt visus uzdevumus</p>
+                </div>
+                <div class="action-card" onclick="window.location.href='statistics.html'">
+                    <i class="fas fa-chart-line action-icon"></i>
+                    <h3>Progresa statistika</h3>
+                    <p>Skatīt savu progresu</p>
+                </div>
+                <div class="action-card" onclick="window.location.href='profile.html'">
+                    <i class="fas fa-user-edit action-icon"></i>
+                    <h3>Rediģēt profilu</h3>
+                    <p>Atjaunot profila informāciju</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interaktīvie elementi -->
+        <section class="interactive-section" id="features">
+            <h2>Izmēģini iespējas</h2>
+            <p>Pārbaudi interaktīvās funkcijas tieši šeit</p>
+            
+            <div class="interactive-grid">
+                <!-- 1. Uzdevumu demonstrācija -->
+                <div class="demo-card">
+                    <h3><i class="fas fa-tasks"></i> Uzdevumu pārvaldība</h3>
+                    <div class="demo-task-list">
+                        <div class="demo-task">
+                            <div class="task-checkbox" onclick="toggleDemoTask(this)">
+                                <i class="far fa-circle"></i>
+                            </div>
+                            <div class="task-info">
+                                <h4>Izpētīt FocusUp iespējas</h4>
+                                <p>Izpildīt līdz: <span>Šodien</span></p>
+                            </div>
+                        </div>
+                        <div class="demo-task">
+                            <div class="task-checkbox" onclick="toggleDemoTask(this)">
+                                <i class="far fa-circle"></i>
+                            </div>
+                            <div class="task-info">
+                                <h4>Pievienot savus uzdevumus</h4>
+                                <p>Izpildīt līdz: <span>Rīt</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-small" onclick="resetDemoTasks()">
+                        <i class="fas fa-redo"></i> Atiestatīt
+                    </button>
+                </div>
+
+                <!-- 2. Progresa animācija -->
+                <div class="demo-card">
+                    <h3><i class="fas fa-chart-bar"></i> Progresa sekšana</h3>
+                    <div class="progress-demo">
+                        <div class="progress-header">
+                            <span>Šodienas progress</span>
+                            <span id="demo-progress-percent">65%</span>
+                        </div>
+                        <div class="progress-bar-demo">
+                            <div class="progress-fill-demo" id="demo-progress-fill"></div>
+                        </div>
+                        <p>Izpildīti <strong>13</strong> no <strong>20</strong> uzdevumiem</p>
+                    </div>
+                    <button class="btn btn-small btn-primary" onclick="animateDemoProgress()">
+                        <i class="fas fa-play"></i> Palaist animāciju
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA sekcija -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Vai esat gatavi kļūt produktīvāki?</h2>
+                <p>Pievienojieties tūkstošiem lietotāju, kuri jau izmanto FocusUp, lai sasniegtu savus mērķus.</p>
+                <a href="tasks.html" class="btn btn-primary btn-large">
+                    <i class="fas fa-rocket"></i> Sākt lietot
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-rocket"></i>
+                <span>FocusUp</span>
+            </div>
+            <p>© 2025 FocusUp. Visas tiesības aizsargātas.</p>
+            <p class="footer-note">Izmantotas licencētas Font Awesome ikonas</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

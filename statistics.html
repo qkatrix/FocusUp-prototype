@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusUp - Statistika</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo-link">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>FocusUp</span>
+                </div>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Sākums</a></li>
+                <li><a href="tasks.html"><i class="fas fa-tasks"></i> Uzdevumi</a></li>
+                <li><a href="statistics.html" class="active"><i class="fas fa-chart-bar"></i> Statistika</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profils</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Iestatījumi</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-btn" title="Pārslēgt tēmu">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-chart-bar"></i> Statistika</h1>
+            <p class="page-subtitle">Seko savam progresam un produktivitātei</p>
+        </div>
+
+        <!-- Kopējā statistika -->
+        <div class="stats-grid">
+            <div class="stat-card large">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Kopējie pabeigtie uzdevumi</h3>
+                    <div class="stat-number" id="total-completed">0</div>
+                    <div class="stat-trend">
+                        <i class="fas fa-arrow-up"></i>
+                        <span id="completion-rate">0%</span> izpildes līmenis
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card large">
+                <div class="stat-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Pašreizējā dienu sērija</h3>
+                    <div class="stat-number" id="current-streak-stat">0</div>
+                    <div class="stat-trend">
+                        <i class="fas fa-calendar"></i>
+                        <span id="streak-days">0 dienas</span> aktīvi
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card large">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Vidējais izpildes laiks</h3>
+                    <div class="stat-number" id="avg-completion">0</div>
+                    <div class="stat-trend">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>dienas uz vienu uzdevumu</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card large">
+                <div class="stat-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Produktivitātes vērtējums</h3>
+                    <div class="stat-number" id="productivity-score">0</div>
+                    <div class="stat-trend">
+                        <i class="fas fa-star"></i>
+                        <span>no 100 punktiem</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progresu grafiki -->
+        <div class="charts-section">
+            <div class="chart-card">
+                <h3><i class="fas fa-chart-line"></i> Nedēļas progress</h3>
+                <div class="chart-container">
+                    <div class="chart-bars">
+                        <div class="chart-bar" data-day="P" data-value="30">
+                            <div class="bar-fill" style="height: 30%"></div>
+                            <span class="bar-label">P</span>
+                        </div>
+                        <div class="chart-bar" data-day="O" data-value="50">
+                            <div class="bar-fill" style="height: 50%"></div>
+                            <span class="bar-label">O</span>
+                        </div>
+                        <div class="chart-bar" data-day="T" data-value="70">
+                            <div class="bar-fill" style="height: 70%"></div>
+                            <span class="bar-label">T</span>
+                        </div>
+                        <div class="chart-bar" data-day="C" data-value="90">
+                            <div class="bar-fill" style="height: 90%"></div>
+                            <span class="bar-label">C</span>
+                        </div>
+                        <div class="chart-bar" data-day="P" data-value="65">
+                            <div class="bar-fill" style="height: 65%"></div>
+                            <span class="bar-label">P</span>
+                        </div>
+                        <div class="chart-bar" data-day="S" data-value="80">
+                            <div class="bar-fill" style="height: 80%"></div>
+                            <span class="bar-label">S</span>
+                        </div>
+                        <div class="chart-bar" data-day="Sv" data-value="95">
+                            <div class="bar-fill" style="height: 95%"></div>
+                            <span class="bar-label">Sv</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-legend">
+                    <span class="legend-item"><span class="legend-color"></span> Izpildes procents</span>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3><i class="fas fa-chart-pie"></i> Uzdevumu sadalījums</h3>
+                <div class="pie-chart">
+                    <div class="pie-segment" data-category="work" style="--percentage: 40%; --color: #009B77;">
+                        <div class="segment-label">Darbs</div>
+                    </div>
+                    <div class="pie-segment" data-category="study" style="--percentage: 30%; --color: #626D84;">
+                        <div class="segment-label">Mācības</div>
+                    </div>
+                    <div class="pie-segment" data-category="personal" style="--percentage: 20%; --color: #1F242E;">
+                        <div class="segment-label">Personīgi</div>
+                    </div>
+                    <div class="pie-segment" data-category="other" style="--percentage: 10%; --color: #FAFAFA;">
+                        <div class="segment-label">Cits</div>
+                    </div>
+                </div>
+                <div class="chart-legend">
+                    <span class="legend-item"><span class="legend-color" style="background: #009B77"></span> Darbs (40%)</span>
+                    <span class="legend-item"><span class="legend-color" style="background: #626D84"></span> Mācības (30%)</span>
+                    <span class="legend-item"><span class="legend-color" style="background: #1F242E"></span> Personīgi (20%)</span>
+                    <span class="legend-item"><span class="legend-color" style="background: #FAFAFA"></span> Cits (10%)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detaļu statistika -->
+        <div class="detailed-stats">
+            <h2><i class="fas fa-list-alt"></i> Detaļu statistika</h2>
+            <div class="stats-table">
+                <div class="table-header">
+                    <div>Kategorija</div>
+                    <div>Kopā uzdevumi</div>
+                    <div>Pabeigtie</div>
+                    <div>Izpildes līmenis</div>
+                </div>
+                <div class="table-row">
+                    <div><i class="fas fa-briefcase"></i> Darbs</div>
+                    <div id="work-total">0</div>
+                    <div id="work-completed">0</div>
+                    <div><span class="progress-indicator" id="work-rate">0%</span></div>
+                </div>
+                <div class="table-row">
+                    <div><i class="fas fa-graduation-cap"></i> Mācības</div>
+                    <div id="study-total">0</div>
+                    <div id="study-completed">0</div>
+                    <div><span class="progress-indicator" id="study-rate">0%</span></div>
+                </div>
+                <div class="table-row">
+                    <div><i class="fas fa-user"></i> Personīgi</div>
+                    <div id="personal-total">0</div>
+                    <div id="personal-completed">0</div>
+                    <div><span class="progress-indicator" id="personal-rate">0%</span></div>
+                </div>
+                <div class="table-row">
+                    <div><i class="fas fa-ellipsis-h"></i> Cits</div>
+                    <div id="other-total">0</div>
+                    <div id="other-completed">0</div>
+                    <div><span class="progress-indicator" id="other-rate">0%</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sasniegumi -->
+        <div class="achievements-section">
+            <h2><i class="fas fa-trophy"></i> Sasniegumi</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card unlocked">
+                    <div class="achievement-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Pirmais solis</h3>
+                        <p>Pievieno pirmo uzdevumu</p>
+                        <span class="achievement-date">Iegūts: <span id="first-task-date">-</span></span>
+                    </div>
+                </div>
+                <div class="achievement-card unlocked">
+                    <div class="achievement-icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Produktivitātes meistars</h3>
+                        <p>Pabeidz 10 uzdevumus</p>
+                        <span class="achievement-progress">Progress: <span id="ten-tasks-progress">0/10</span></span>
+                    </div>
+                </div>
+                <div class="achievement-card locked">
+                    <div class="achievement-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Nepārtraukta sērija</h3>
+                        <p>Strādā 7 dienas pēc kārtas</p>
+                        <span class="achievement-progress">Progress: <span id="streak-progress">0/7</span></span>
+                    </div>
+                </div>
+                <div class="achievement-card locked">
+                    <div class="achievement-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Ķēniņš produktivitātes</h3>
+                        <p>Pabeidz 100 uzdevumus</p>
+                        <span class="achievement-progress">Progress: <span id="hundred-tasks-progress">0/100</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Eksportēšanas iespējas -->
+        <div class="export-section">
+            <h2><i class="fas fa-download"></i> Datu pārvaldība</h2>
+            <div class="export-options">
+                <button class="btn btn-primary" onclick="exportStatistics()">
+                    <i class="fas fa-file-export"></i> Eksportēt statistiku
+                </button>
+                <button class="btn btn-secondary" onclick="resetStatistics()">
+                    <i class="fas fa-redo"></i> Atiestatīt statistiku
+                </button>
+                <button class="btn btn-secondary" onclick="refreshStatistics()">
+                    <i class="fas fa-sync-alt"></i> Atjaunot datus
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-rocket"></i>
+                <span>FocusUp</span>
+            </div>
+            <p>© 2025 FocusUp. Visas tiesības aizsargātas.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

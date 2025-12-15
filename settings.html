@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusUp - Iestatījumi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo-link">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>FocusUp</span>
+                </div>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Sākums</a></li>
+                <li><a href="tasks.html"><i class="fas fa-tasks"></i> Uzdevumi</a></li>
+                <li><a href="statistics.html"><i class="fas fa-chart-bar"></i> Statistika</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profils</a></li>
+                <li><a href="settings.html" class="active"><i class="fas fa-cog"></i> Iestatījumi</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-btn" title="Pārslēgt tēmu">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-cog"></i> Iestatījumi</h1>
+            <p class="page-subtitle">Pielāgo lietotnes uzvedību un izskatu</p>
+        </div>
+
+        <div class="settings-grid">
+            <!-- Dizaina iestatījumi -->
+            <div class="settings-card">
+                <h2><i class="fas fa-palette"></i> Dizains</h2>
+                <div class="settings-group">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Tumšais režīms</h4>
+                            <p>Pārslēgt starp gaišo un tumšo tēmu</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="dark-mode-toggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Krāsu shēma</h4>
+                            <p>Izvēlies lietotnes primāro krāsu</p>
+                        </div>
+                        <div class="color-picker">
+                            <button class="color-option active" data-color="#009B77" style="background-color: #009B77;"></button>
+                            <button class="color-option" data-color="#626D84" style="background-color: #626D84;"></button>
+                            <button class="color-option" data-color="#1F242E" style="background-color: #1F242E;"></button>
+                            <button class="color-option" data-color="#FAFAFA" style="background-color: #FAFAFA; border: 1px solid #ccc;"></button>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Fonta izmērs</h4>
+                            <p>Iestatīt teksta izmēru</p>
+                        </div>
+                        <select id="font-size" class="settings-select">
+                            <option value="small">Mazs</option>
+                            <option value="medium" selected>Vidējs</option>
+                            <option value="large">Liels</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paziņojumu iestatījumi -->
+            <div class="settings-card">
+                <h2><i class="fas fa-bell"></i> Paziņojumi</h2>
+                <div class="settings-group">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Uzdevumu atgādinājumi</h4>
+                            <p>Saņem atgādinājumus par termiņiem</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="task-reminders" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Dienas pārskats</h4>
+                            <p>Saņem katru dienu kopsavilkumu</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="daily-summary">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Paziņojumu skaņa</h4>
+                            <p>Atslēgt paziņojumu skaņas</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="notification-sound" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lietotnes uzvedība -->
+            <div class="settings-card">
+                <h2><i class="fas fa-sliders-h"></i> Uzvedība</h2>
+                <div class="settings-group">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Automātiska saglabāšana</h4>
+                            <p>Automātiski saglabā izmaiņas</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="auto-save" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Animācijas</h4>
+                            <p>Rādīt animācijas un pārejas</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="animations" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Sākuma lapa</h4>
+                            <p>Kuru lapu rādīt, atverot lietotni</p>
+                        </div>
+                        <select id="start-page" class="settings-select">
+                            <option value="tasks" selected>Uzdevumi</option>
+                            <option value="statistics">Statistika</option>
+                            <option value="profile">Profils</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Datu pārvaldība -->
+            <div class="settings-card">
+                <h2><i class="fas fa-database"></i> Datu pārvaldība</h2>
+                <div class="settings-group">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Datu drošības kopija</h4>
+                            <p>Automātiski veidot dublējumkopijas</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="auto-backup" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Datu eksports</h4>
+                            <p>Eksportēt visus savus datus</p>
+                        </div>
+                        <button class="btn btn-small" onclick="exportAllData()">
+                            <i class="fas fa-download"></i> Eksportēt
+                        </button>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Datu importēšana</h4>
+                            <p>Importēt datus no faila</p>
+                        </div>
+                        <button class="btn btn-small" onclick="importData()">
+                            <i class="fas fa-upload"></i> Importēt
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Par lietotni -->
+            <div class="settings-card">
+                <h2><i class="fas fa-info-circle"></i> Par lietotni</h2>
+                <div class="about-info">
+                    <div class="app-info">
+                        <h3>FocusUp</h3>
+                        <p>Versija: <strong id="app-version">1.0.0</strong></p>
+                        <p>Izstrādātājs: <strong>IT Projekts</strong></p>
+                        <p>Izstrādes datums: <strong>15.12.2025</strong></p>
+                    </div>
+                    
+                    <div class="license-info">
+                        <h4><i class="fas fa-balance-scale"></i> Licences informācija</h4>
+                        <ul>
+                            <li><i class="fab fa-font-awesome"></i> Font Awesome (MIT License)</li>
+                            <li><i class="fas fa-palette"></i> Krāsu palete: Brīva izmantošana</li>
+                            <li><i class="fas fa-code"></i> Kods: Atvērtais kods skolas projektam</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h4><i class="fas fa-envelope"></i> Kontakti</h4>
+                        <p>Projekta vadītājs: Skolotājs</p>
+                        <p>Izstrādātājs: Students</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Atiestatīšana -->
+            <div class="settings-card danger-zone">
+                <h2><i class="fas fa-exclamation-triangle"></i> Atiestatīšana</h2>
+                <div class="reset-options">
+                    <p class="warning-text">
+                        <i class="fas fa-exclamation-circle"></i>
+                        Uzmanību: Šīs darbības nevar atsaukt.
+                    </p>
+                    
+                    <button class="btn btn-warning" onclick="resetToDefaults()">
+                        <i class="fas fa-redo"></i> Atjaunot noklusējumus
+                    </button>
+                    
+                    <button class="btn btn-danger" onclick="clearAllData()">
+                        <i class="fas fa-trash"></i> Dzēst visus datus
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-rocket"></i>
+                <span>FocusUp</span>
+            </div>
+            <p>© 2025 FocusUp. Visas tiesības aizsargātas.</p>
+            <p class="footer-note">Lietotāja dati tiek saglabāti lokāli jūsu ierīcē</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

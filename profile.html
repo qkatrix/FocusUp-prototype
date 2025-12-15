@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusUp - Profils</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo-link">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>FocusUp</span>
+                </div>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Sākums</a></li>
+                <li><a href="tasks.html"><i class="fas fa-tasks"></i> Uzdevumi</a></li>
+                <li><a href="statistics.html"><i class="fas fa-chart-bar"></i> Statistika</a></li>
+                <li><a href="profile.html" class="active"><i class="fas fa-user"></i> Profils</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Iestatījumi</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-btn" title="Pārslēgt tēmu">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-user"></i> Mans profils</h1>
+            <p class="page-subtitle">Pārvaldi savu kontu un personas informāciju</p>
+        </div>
+
+        <div class="profile-content">
+            <!-- Profila informācija -->
+            <div class="profile-section">
+                <h2><i class="fas fa-id-card"></i> Profila informācija</h2>
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="avatar-container">
+                            <div class="avatar" id="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <button class="avatar-edit" onclick="changeAvatar()">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                        </div>
+                        <div class="profile-info">
+                            <h3 id="username-display">Lietotājs</h3>
+                            <p class="profile-email" id="user-email">e-pasts nav iestatīts</p>
+                            <div class="profile-stats">
+                                <span><i class="fas fa-calendar"></i> Pievienojies: <span id="join-date">-</span></span>
+                                <span><i class="fas fa-trophy"></i> Līmenis: <span class="level-badge" id="user-level">1</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-form">
+                        <div class="form-group">
+                            <label for="profile-name"><i class="fas fa-user-edit"></i> Vārds</label>
+                            <input type="text" id="profile-name" placeholder="Ievadi savu vārdu...">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-email"><i class="fas fa-envelope"></i> E-pasts</label>
+                            <input type="email" id="profile-email" placeholder="Ievadi e-pastu...">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-bio"><i class="fas fa-edit"></i> Par sevi</label>
+                            <textarea id="profile-bio" placeholder="Raksti par sevi..." rows="3" maxlength="500"></textarea>
+                            <div class="char-counter" id="bio-counter">0/500</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-goal"><i class="fas fa-bullseye"></i> Dienas mērķis</label>
+                            <input type="number" id="profile-goal" min="1" max="50" placeholder="Uzdevumu skaits dienā...">
+                        </div>
+                        <button class="btn btn-primary" onclick="saveProfile()">
+                            <i class="fas fa-save"></i> Saglabāt izmaiņas
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Konta iestatījumi -->
+            <div class="profile-section">
+                <h2><i class="fas fa-user-cog"></i> Konta iestatījumi</h2>
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4><i class="fas fa-bell"></i> Paziņojumi</h4>
+                            <p>Saņem atgādinājumus par uzdevumu termiņiem</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="notifications-toggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4><i class="fas fa-envelope-open"></i> Nedēļas atskaite</h4>
+                            <p>Saņem e-pastā nedēļas produktivitātes atskaiti</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="weekly-report-toggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4><i class="fas fa-eye"></i> Publisks profils</h4>
+                            <p>Atļaut citiem lietotājiem skatīt tavu statistiku</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="public-profile-toggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drošība -->
+            <div class="profile-section">
+                <h2><i class="fas fa-shield-alt"></i> Drošība</h2>
+                <div class="security-card">
+                    <div class="security-item">
+                        <div class="security-info">
+                            <h4><i class="fas fa-key"></i> Mainīt paroli</h4>
+                            <p>Aktualizē savu konta paroli</p>
+                        </div>
+                        <button class="btn btn-small" onclick="changePassword()">
+                            <i class="fas fa-edit"></i> Mainīt
+                        </button>
+                    </div>
+
+                    <div class="security-item">
+                        <div class="security-info">
+                            <h4><i class="fas fa-sign-out-alt"></i> Izrakstīšanās no visām ierīcēm</h4>
+                            <p>Beidz sesijas uz visām ierīcēm</p>
+                        </div>
+                        <button class="btn btn-small" onclick="logoutAllDevices()">
+                            <i class="fas fa-plug"></i> Izrakstīties
+                        </button>
+                    </div>
+
+                    <div class="security-item">
+                        <div class="security-info">
+                            <h4><i class="fas fa-download"></i> Datu eksports</h4>
+                            <p>Lejupielādēt visus savus datus</p>
+                        </div>
+                        <button class="btn btn-small" onclick="exportUserData()">
+                            <i class="fas fa-file-export"></i> Eksportēt
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bīstamā zona -->
+            <div class="profile-section danger-zone">
+                <h2><i class="fas fa-exclamation-triangle"></i> Bīstamā zona</h2>
+                <div class="danger-card">
+                    <p class="danger-warning">
+                        <i class="fas fa-exclamation-circle"></i>
+                        Šīs darbības nevar atsaukt. Lūdzu, izmanto ar piesardzību.
+                    </p>
+                    
+                    <div class="danger-actions">
+                        <button class="btn btn-danger" onclick="resetAccountData()">
+                            <i class="fas fa-redo"></i> Atiestatīt visus datus
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteAccount()">
+                            <i class="fas fa-trash-alt"></i> Dzēst kontu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-rocket"></i>
+                <span>FocusUp</span>
+            </div>
+            <p>© 2025 FocusUp. Visas tiesības aizsargātas.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

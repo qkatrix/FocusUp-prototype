@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusUp - Uzdevumi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo-link">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>FocusUp</span>
+                </div>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Sākums</a></li>
+                <li><a href="tasks.html" class="active"><i class="fas fa-tasks"></i> Uzdevumi</a></li>
+                <li><a href="statistics.html"><i class="fas fa-chart-bar"></i> Statistika</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profils</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Iestatījumi</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-btn" title="Pārslēgt tēmu">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-tasks"></i> Mani uzdevumi</h1>
+            <p class="page-subtitle">Pārvaldi savus uzdevumus un seko progresam</p>
+        </div>
+
+        <!-- Jauna uzdevuma pievienošana -->
+        <div class="add-task-section">
+            <h2><i class="fas fa-plus-circle"></i> Pievienot jaunu uzdevumu</h2>
+            <div class="add-task-form">
+                <div class="form-group">
+                    <input type="text" id="task-title" placeholder="Uzdevuma nosaukums..." maxlength="100">
+                    <div class="char-counter" id="title-counter">0/100</div>
+                </div>
+                <div class="form-group">
+                    <textarea id="task-description" placeholder="Uzdevuma apraksts (nav obligāts)..." rows="2" maxlength="500"></textarea>
+                    <div class="char-counter" id="desc-counter">0/500</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="task-deadline"><i class="fas fa-calendar"></i> Termiņš</label>
+                        <input type="date" id="task-deadline">
+                    </div>
+                    <div class="form-group">
+                        <label for="task-priority"><i class="fas fa-flag"></i> Prioritāte</label>
+                        <select id="task-priority">
+                            <option value="low">Zema</option>
+                            <option value="medium" selected>Vidēja</option>
+                            <option value="high">Augsta</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-category"><i class="fas fa-folder"></i> Kategorija</label>
+                        <select id="task-category">
+                            <option value="work">Darbs</option>
+                            <option value="study" selected>Mācības</option>
+                            <option value="personal">Personīgi</option>
+                            <option value="other">Cits</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-block" onclick="addNewTask()">
+                    <i class="fas fa-plus"></i> Pievienot uzdevumu
+                </button>
+            </div>
+        </div>
+
+        <!-- Uzdevumu filtri un meklēšana -->
+        <div class="task-controls">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="task-search" placeholder="Meklēt uzdevumus..." onkeyup="filterTasks()">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="changeFilter('all')">Visi</button>
+                <button class="filter-btn" onclick="changeFilter('active')">Aktīvie</button>
+                <button class="filter-btn" onclick="changeFilter('completed')">Pabeigtie</button>
+                <button class="filter-btn" onclick="changeFilter('today')">Šodien</button>
+                <button class="filter-btn" onclick="changeFilter('high')">Augsta prioritāte</button>
+            </div>
+        </div>
+
+        <!-- Uzdevumu saraksts -->
+        <div class="tasks-section">
+            <h2><i class="fas fa-list-check"></i> Uzdevumu saraksts</h2>
+            <div class="task-list-header">
+                <span>Kopā uzdevumu: <strong id="total-tasks">0</strong></span>
+                <span>Pabeigtie: <strong id="completed-tasks">0</strong></span>
+                <span>Aktīvie: <strong id="active-tasks">0</strong></span>
+            </div>
+            
+            <div class="tasks-list" id="tasks-container">
+                <!-- Uzdevumi tiks ielādēti šeit dinamiski -->
+                <div class="empty-state" id="empty-state">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>Nav uzdevumu</h3>
+                    <p>Pievieno pirmo uzdevumu, izmantojot formu augšā</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rīku josla -->
+        <div class="tools-section">
+            <h2><i class="fas fa-tools"></i> Rīki</h2>
+            <div class="tools-grid">
+                <button class="tool-btn" onclick="markAllAsCompleted()">
+                    <i class="fas fa-check-double"></i>
+                    <span>Atzīmēt visus kā pabeigtus</span>
+                </button>
+                <button class="tool-btn" onclick="deleteCompletedTasks()">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Dzēst pabeigtos uzdevumus</span>
+                </button>
+                <button class="tool-btn" onclick="exportTasks()">
+                    <i class="fas fa-download"></i>
+                    <span>Eksportēt uzdevumus</span>
+                </button>
+                <button class="tool-btn" onclick="importTasks()">
+                    <i class="fas fa-upload"></i>
+                    <span>Importēt uzdevumus</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-rocket"></i>
+                <span>FocusUp</span>
+            </div>
+            <p>© 2025 FocusUp. Visas tiesības aizsargātas.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
